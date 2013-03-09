@@ -1,5 +1,5 @@
 class Enumerator
-  class Lazy
+  class Lazy < Enumerator
     VERSION = "2.0.0"
   end
 end

@@ -62,8 +62,10 @@ class Enumerator
     def drop_while(&block)
       _block_error(:collect) unless block
       Lazy.new do |output|
+        condition_failed = false
         each do |element|
-          output.yield(element) unless yield(element)..true
+          condition_failed ||= !yield(element)
+          output.yield element unless !condition_failed
         end
       end
     end
